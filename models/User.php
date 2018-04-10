@@ -9,6 +9,7 @@ use webvimark\modules\UserManagement\components\UserIdentity;
 use webvimark\modules\UserManagement\models\rbacDB\Role;
 use webvimark\modules\UserManagement\models\rbacDB\Route;
 use webvimark\modules\UserManagement\UserManagementModule;
+use webvimark\modules\UserManagement\models\UserProfile;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -417,4 +418,8 @@ class User extends UserIdentity
 
 		return parent::beforeDelete();
 	}
+    
+    public function getUserProfile() {
+        return $this->hasOne(UserProfile::className(), ['id' => 'user_profile_id']);
+    }
 }
