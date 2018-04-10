@@ -390,6 +390,14 @@ class User extends UserIdentity
 			$this->setPassword($this->password);
 		}
 
+        // save profile
+
+        if (Yii::$app->request->post('UserProfile')) {
+           $userProfile = $this->userProfile;
+           $userProfile->attributes = Yii::$app->request->post('UserProfile');
+           $userProfile->save();
+        }
+        
 		return parent::beforeSave($insert);
 	}
 
@@ -419,7 +427,14 @@ class User extends UserIdentity
 		return parent::beforeDelete();
 	}
     
-    public function getUserProfile() {
-        return $this->hasOne(UserProfile::className(), ['id' => 'user_profile_id']);
+    public function getUserProfile()
+    {
+        if($this->hasOne(UserProfile::className(), ['user_id' => 'id'])->exists()){
+            return $this->hasOne(UserProfile::className(), ['user_id' => 'id']);
+        } else {
+           $userProfile = new UserProfile;
+           return $userProfile;
+        }
+        
     }
 }

@@ -3,6 +3,7 @@
 namespace webvimark\modules\UserManagement\models;
 
 use webvimark\modules\UserManagement\models\User;
+use yii\db\ActiveRecord;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -12,21 +13,19 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $id
  * @property integer $user_id
  * @property string $products_query
- * @property string $facedection_query
+ * @property string $facedetection_query
  * @property string $facedetection_group
  * @property string $facedetection_id
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $status
- *
- * @property User $user
  */
-class UserProfile extends User
+class UserProfile extends ActiveRecord
 {
     
     public $status;
-    public $products_query;
-    
+    public $superadmin;
+   
     /**
     * @inheritdoc
     */
@@ -52,7 +51,7 @@ class UserProfile extends User
     {
         return [
             [['user_id', 'status'], 'integer'],
-            [['products_query', 'facedection_query', 'facedetection_group', 'facedetection_id'], 'string'],          
+            [['products_query', 'facedetection_query', 'facedetection_group', 'facedetection_id'], 'string'],          
         ];
     }
 

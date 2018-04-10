@@ -2,9 +2,10 @@
 
 namespace webvimark\modules\UserManagement\controllers;
 
-use webvimark\components\AdminDefaultController;
+use webvimark\modules\UserManagement\controllers\AdminDefaultController;
 use Yii;
 use webvimark\modules\UserManagement\models\User;
+use webvimark\modules\UserManagement\models\UserProfile;
 use webvimark\modules\UserManagement\models\search\UserSearch;
 use yii\web\NotFoundHttpException;
 
@@ -28,10 +29,22 @@ class UserController extends AdminDefaultController
 	 */
 	public function actionCreate()
 	{
+	    
 		$model = new User(['scenario'=>'newUser']);
-
+        
 		if ( $model->load(Yii::$app->request->post()) && $model->save() )
 		{
+		    /*
+		    if (Yii::$app->request->post('UserProfile')) {
+           $userProfile = $this->userProfile;
+           $userProfile->attributes = Yii::$app->request->post('UserProfile');
+           $userProfile->save();
+        }*/
+		    $userProfile = new UserProfile();
+            $userProfile->attributes = Yii::$app->request->post('UserProfile');
+		    $userProfile->user_id = $model->id;
+            $userProfile->save();
+            
 			return $this->redirect(['view',	'id' => $model->id]);
 		}
 
