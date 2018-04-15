@@ -166,7 +166,9 @@ class AdminDefaultController extends BaseController
     {
         //delete userProfile
         $modelProfile = UserProfile::findOne(['user_id' => $id]);
-        $modelProfile->delete();
+        
+        if($modelProfile)
+            $modelProfile->delete();
         
         $model = $this->findModel($id);
         $model->delete();
