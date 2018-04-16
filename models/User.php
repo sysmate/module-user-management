@@ -27,7 +27,6 @@ use yii\behaviors\TimestampBehavior;
  * @property string $registration_ip
  * @property integer $status
  * @property integer $superadmin
- * @property integer $groupadmin
  * @property string $usergroup
  * @property integer $created_at
  * @property integer $updated_at
@@ -323,7 +322,6 @@ class User extends UserIdentity
             'id'                 => 'ID',
             'username'           => UserManagementModule::t('back', 'Login'),
             'superadmin'         => UserManagementModule::t('back', 'Superadmin'),
-            'groupadmin'         => UserManagementModule::t('back', 'Groupadmin'),
             'usergroup'          => UserManagementModule::t('back', 'Usergroup'),
             'confirmation_token' => UserManagementModule::t('back', 'Confirmation Token'),
             'registration_ip'    => UserManagementModule::t('back', 'Registration IP'),
