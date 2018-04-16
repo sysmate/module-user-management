@@ -256,6 +256,8 @@ class User extends UserIdentity
             ['username', 'trim'],
 
             [['status', 'email_confirmed'], 'integer'],
+            
+            ['usergroup', 'string', 'max' => 255],
 
             ['email', 'email'],
             ['email', 'validateEmailConfirmedUnique'],
@@ -322,7 +324,7 @@ class User extends UserIdentity
             'username'           => UserManagementModule::t('back', 'Login'),
             'superadmin'         => UserManagementModule::t('back', 'Superadmin'),
             'groupadmin'         => UserManagementModule::t('back', 'Groupadmin'),
-            'usergroup'         => UserManagementModule::t('back', 'Usergroup'),
+            'usergroup'          => UserManagementModule::t('back', 'Usergroup'),
             'confirmation_token' => UserManagementModule::t('back', 'Confirmation Token'),
             'registration_ip'    => UserManagementModule::t('back', 'Registration IP'),
             'bind_to_ip'         => UserManagementModule::t('back', 'Bind to IP'),
@@ -441,4 +443,5 @@ class User extends UserIdentity
         }
         
     }
+    
 }
